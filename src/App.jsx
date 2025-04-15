@@ -3,8 +3,8 @@ import "./App.css";
 
 function App() {
   // Состояния
-  const [currentValue, setCurrentValue] = React.useState("Test");
-  const [list, setList] = React.useState([]);
+  const [currentValue, setCurrentValue] = React.useState("");//Убрать default!!
+  const [list, setList] = React.useState([]);//Это все тут.
   const [inputValue, setInputValue] = React.useState("");
 
   // Обработчики событий
@@ -19,7 +19,7 @@ function App() {
     const newValue = e.target.value;
     setInputValue(newValue);
     if (newValue.trim().length >= 3) {
-      setCurrentValue(newValue);
+      setCurrentValue(newValue); //И?куда?
     }
   };
 
@@ -32,7 +32,7 @@ function App() {
 
   // Проверка валидности значения (минимум 3 символа) вопрос  и знак
   const isValueValid = currentValue.trim().length >= 3;
-
+  //Перерисовывает,?
   return React.createElement(
     "div",
     { className: "app" },
@@ -47,7 +47,7 @@ function App() {
       }),
       React.createElement("p", { className: "no-margin-text" }, "Текущее значение ",
         React.createElement("code", null, ": "),
-        React.createElement("span", { className: "current-value" }, currentValue || "—")
+        React.createElement("span", { className: "current-value" }, currentValue || "*")
       ),
       // Блок ошибки (показывается только если значение некорректно) Исправить очистить дописать
       !isValueValid && currentValue !== "" && React.createElement(
@@ -60,7 +60,7 @@ function App() {
           className: "button",
           onClick: handleSubmitNewValue,
           disabled: inputValue.trim().length < 3
-        }, "Ввести новое"),
+        }, "Ввести новое"), //Значение висит в памяти и не удаляется()!,?
         React.createElement("button", {
           className: "button",
           onClick: handleAddToList,
